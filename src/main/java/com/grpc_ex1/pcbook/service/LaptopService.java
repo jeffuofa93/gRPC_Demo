@@ -54,8 +54,21 @@ public class LaptopService extends LaptopServiceGrpc.LaptopServiceImplBase {
             );
             return;
         } catch (Exception e) {
-            responseObserver.on()
+            responseObserver.onError(
+                    Status.INTERNAL
+                            .withDescription(e.getMessage())
+                            .asRuntimeException()
+            );
         }
+        CreateLaptopResponse response = CreateLaptopResponse.newBuilder().setId(other.getId()).build();
+        // after unary request from client sent response back from server with onNext
+        responseObserver.onNext(response);
+        // tells the client response was sent
+        responseObserver.onCompleted();
+
+        logger.info ("saved laptop with ID: " + other.getId());
+
+
 
     }
 }
