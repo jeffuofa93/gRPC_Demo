@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package grpc_ex1;
+option java_package = "com.grpc_ex1.pcbook.pb";
+option java_multiple_files = true;
+
+import "laptop_message.proto";
+
+message CreateLaptopRequest {Laptop laptop = 1;}
+
+message CreateLaptopResponse {string id=1;}
+
+// takes CreateLaptop request as input and return CreateLaptopResponse
+service LaptopService {
+  rpc CreateLaptop(CreateLaptopRequest) returns (CreateLaptopResponse);
+}

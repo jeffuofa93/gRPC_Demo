@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package grpc_ex1;
+import "memory_message.proto";
+option java_package = "com.grpc_ex1.pcbook.pb";
+option java_multiple_files = true;
+
+
+
+message CPU {
+  // Brand of the CPU
+  string brand = 1;
+  // Name of the CPU
+  string name = 2;
+  // cores for the cpu
+  uint32 number_cores = 3;
+  // threads for the cpu
+  uint32 number_threads = 4;
+  // min and max ghz for CPU
+  double min_ghz = 5;
+  double max_ghz = 6;
+}
+
+message GPU {
+  string brand = 1;
+  string name = 2;
+  // min and max ghz for GPU
+  double min_ghz = 3;
+  double max_ghz = 4;
+  // Memory custom type
+  Memory memory = 5;
+}
